@@ -277,8 +277,6 @@
       label="General">
     <project
         href="BizXBasic.setup#/"/>
-    <project
-        href="BizXCodeTemplates.setup#/"/>
   </project>
   <project name="EnhancementContainer"
       label="Enhancements">
@@ -287,13 +285,7 @@
     <project
         href="Javascript.setup#/"/>
     <project
-        href="JRebel.setup#/"/>
-    <project
-        href="HANAStudio.setup#/"/>
-    <project
         href="Docker.setup#/"/>
-    <project
-        href="VMDevelopment.setup#/"/>
   </project>
   <description>BizX Project Catalog</description>
 </setup:ProjectCatalog>
