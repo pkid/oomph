@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="Docker"
+    label="Docker">
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="User Preferences">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/UserPreferences"/>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.linuxtools.docker.ui">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.linuxtools.docker.ui/dockerComposeInstallDir"
+          value="/data/scripts"/>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.eclipse.linuxtools.docker.feature.feature.group"/>
+    <requirement
+        name="net.mihai-nita.ansicon.feature.group"/>
+    <requirement
+        name="org.dadacoalition.yedit.feature.feature.group"/>
+    <repository
+        url="https://www.mihai-nita.net/eclipse"/>
+    <repository
+        url="http://dadacoalition.org/yedit"/>
+  </setupTask>
+  <stream name="master"
+      label="master">
+    <description>master</description>
+  </stream>
+  <description>Docker Tools</description>
+</setup:Project>

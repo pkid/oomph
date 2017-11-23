@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="jrebel"
+    label="JRebel">
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.zeroturnaround.eclipse.feature.feature.group"
+        versionRange="[7.0.0,8.0.0)"/>
+    <requirement
+        name="org.zeroturnaround.eclipse.wtp.feature.feature.group"
+        versionRange="[7.0.0,8.0.0)"/>
+    <requirement
+        name="org.zeroturnaround.eclipse.m2e.feature.feature.group"/>
+    <repository
+        url="http://update.zeroturnaround.com/update-site"/>
+  </setupTask>
+  <stream name="master"
+      label="Master"/>
+  <description>JRebel provides plugin for JRebel support</description>
+</setup:Project>

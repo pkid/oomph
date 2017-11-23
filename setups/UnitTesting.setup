@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="unit.testing"
+    label="Unit Testing">
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="User Preferences">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/UserPreferences">
+      <detail
+          key="/instance/org.moreunit/org.moreunit.test_type">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.testFolderPathTemplate">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.testFileNameTemplate">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.srcFolderPathTemplate">
+        <value>record</value>
+      </detail>
+    </annotation>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.moreunit">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.moreunit/org.moreunit.test_type"
+          value="testng"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.moreunit.core">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.srcFolderPathTemplate"
+          value="$${srcProject}"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.testFileNameTemplate"
+          value="$${srcFile}Test"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.moreunit.core/org.moreunit.core.anyLanguage.testFolderPathTemplate"
+          value="$${srcProject}"/>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.moreunit.feature.group"
+        versionRange="[3.1.0,4.0.0)"/>
+    <requirement
+        name="org.moreunit.mock.feature.group"
+        versionRange="[3.1.0,4.0.0)"/>
+    <requirement
+        name="org.eclipse.eclemma.feature.feature.group"
+        versionRange="[3.0.0,4.0.0)"/>
+    <repository
+        url="http://update.eclemma.org/"/>
+    <repository
+        url="http://moreunit.sourceforge.net/update-site/"/>
+  </setupTask>
+  <stream name="master"
+      label="Master"/>
+  <description>Unit Testing provides enhancements for better unit testing in Eclipse</description>
+</setup:Project>

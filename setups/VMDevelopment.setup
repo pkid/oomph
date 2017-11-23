@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="VM_Development"
+    label="VM Development">
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="User Preferences">
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.core.runtime">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.core.runtime/content-types/com.brainwy.liclipse.yaml/file-names"
+          value="soloistrc,soloistrc_template"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.core.runtime/content-types/org.eclipse.dltk.rubyContentType/file-extensions"
+          value="erb"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.dltk.launching">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.launching/org.eclipse.dltk.launching.PREF_INTERPRETER_XML"
+          value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?>&#xA;&lt;interpreterSettings>&#xA;&lt;defaultInterpreter environment=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;66,org.eclipse.dltk.internal.debug.ui.launcher.GenericRubyInstallType13,1505826222099&quot; nature=&quot;org.eclipse.dltk.ruby.core.nature&quot;/>&#xA;&lt;defaultInterpreter environment=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;57,org.eclipse.dltk.sh.ui.interpreter.ShellScriptInstallType13,1507191183919&quot; nature=&quot;org.eclipse.dltk.sh.core.nature&quot;/>&#xA;&lt;interpreterType id=&quot;org.eclipse.dltk.internal.debug.ui.launcher.GenericRubyInstallType&quot;>&#xA;&lt;interpreter environmentId=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;1505808058240&quot; name=&quot;ruby2.3&quot; path=&quot;/usr/bin/ruby&quot;/>&#xA;&lt;interpreter environmentId=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;1505826222099&quot; name=&quot;ruby&quot; path=&quot;/opt/chef/embedded/bin/ruby&quot;/>&#xA;&lt;/interpreterType>&#xA;&lt;interpreterType id=&quot;org.eclipse.dltk.sh.ui.interpreter.ShellScriptInstallType&quot;>&#xA;&lt;interpreter environmentId=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;org.eclipse.dltk.sh.ui.interpreter.default&quot; name=&quot;/bin/sh&quot; path=&quot;/bin/dash&quot;/>&#xA;&lt;interpreter environmentId=&quot;org.eclipse.dltk.core.environment.localEnvironment&quot; id=&quot;1507191183919&quot; name=&quot;bash&quot; path=&quot;/bin/bash&quot;/>&#xA;&lt;/interpreterType>&#xA;&lt;/interpreterSettings>&#xA;"/>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="org.eclipse.dltk.ruby.feature.group"/>
+    <requirement
+        name="org.brainwy.liclipsetext.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.dltk.sh.feature.group"/>
+    <repository
+        url="http://update.liclipse.com/latest"/>
+  </setupTask>
+  <stream name="master"
+      label="master">
+    <description>master</description>
+  </stream>
+  <description>Tools for VM Development</description>
+</setup:Project>
