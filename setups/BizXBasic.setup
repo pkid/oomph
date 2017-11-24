@@ -1520,7 +1520,8 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
-      remoteURI="git@github.wdf.sap.corp:nextgenpayroll-basecamp/commons-static-code-analysis.git"/>
+      location="${installation.location}/checkstyle"
+      remoteURI="https://github.wdf.sap.corp/nextgenpayroll-basecamp/commons-static-code-analysis"/>
   <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
