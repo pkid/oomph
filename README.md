@@ -929,4 +929,3 @@ Custom product and project catalogue for BizX development projects, inspired by 
   <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
 </setup:User>
 ```
- 
