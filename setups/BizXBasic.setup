@@ -18,14 +18,70 @@
           key="/instance/org.eclipse.team.svn.ui/preference.decoration.format.project">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.ui/ask.before.rebuild">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.ui/warn.before.losing.filesets">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.core/limit.markers.per.resource">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.core/background.full.build">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.core/include.rule.names">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.core/marker.amount.limit">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/net.sf.eclipsecs.core/include.module.ids">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
-        name="org.apache.ivyde.eclipse">
+        name="net.sf.eclipsecs.core">
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.apache.ivyde.eclipse/ivy_conf_path"
-          value="$$$${workspace_loc:build-system/ivysettings.xml}"/>
+          key="/instance/net.sf.eclipsecs.core/background.full.build"
+          value="true"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.core/include.module.ids"
+          value="false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.core/include.rule.names"
+          value="true"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.core/limit.markers.per.resource"
+          value="false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.core/marker.amount.limit"
+          value="100"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="net.sf.eclipsecs.ui">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.ui/ask.before.rebuild"
+          value="prompt"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/net.sf.eclipsecs.ui/warn.before.losing.filesets"
+          value="true"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1520,6 +1576,7 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
+      disabled="true"
       location="${installation.location}/checkstyle"
       remoteURI="https://github.wdf.sap.corp/nextgenpayroll-basecamp/commons-static-code-analysis"/>
   <setupTask
@@ -1528,6 +1585,20 @@
         name="201707161819.Checkstyle"/>
     <repository
         url="http://eclipse-cs.sf.net/update"/>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:ResourceCreationTask"
+      id="checkstyle-rules"
+      content="&lt;?xml version=&quot;1.0&quot;?>&#xA;&lt;!DOCTYPE module PUBLIC&#xA;          &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;&#xA;          &quot;http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd&quot;>&#xA;&#xA;&lt;module name = &quot;Checker&quot;>&#xA;    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/>&#xA;    &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/>&#xA;&#xA;    &lt;!-- Checks files with below extensions -->&#xA;    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, properties, xml&quot;/>&#xA;&#xA;    &lt;!-- Checks that there are no tab characters ('\t') in the source code.&#xA;    &lt;module name=&quot;FileTabCharacter&quot;>&#xA;          &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/>&#xA;    &lt;/module> -->&#xA;&#xA;     &lt;!-- check if a class is less than 300 lines -->&#xA;    &lt;module name=&quot;FileLength&quot;>&#xA;        &lt;property name=&quot;max&quot; value=&quot;300&quot;/>&#xA;    &lt;/module>&#xA;&#xA;    &lt;module name=&quot;TreeWalker&quot;>&#xA;        &lt;!-- Checks that the outer type name and the file name match. For example, the class Foo must be in a file named Foo.java. -->&#xA;        &lt;module name=&quot;OuterTypeFilename&quot;/>&#xA;        &lt;module name=&quot;IllegalTokenText&quot;>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL, CHAR_LITERAL&quot;/>&#xA;            &lt;property name=&quot;format&quot; value=&quot;\\u00(09|0(a|A)|0(c|C)|0(d|D)|22|27|5(C|c))|\\(0(10|11|12|14|15|42|47)|134)&quot;/>&#xA;            &lt;property name=&quot;message&quot; value=&quot;Consider using special escape sequence instead of octal value or Unicode escaped value.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;>&#xA;            &lt;property name=&quot;allowEscapesForControlCharacters&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowByTailComment&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowNonPrintableEscapes&quot; value=&quot;true&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;LineLength&quot;>&#xA;            &lt;property name=&quot;max&quot; value=&quot;200&quot;/>&#xA;            &lt;property name=&quot;ignorePattern&quot; value=&quot;^package.*|^import.*|a href|href|http://|https://|ftp://&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;AvoidStarImport&quot;/>&#xA;&#xA;        &lt;!-- violation example: package com.puppycrawl. //violation -->&#xA;        &lt;!--                        tools.checkstyle.checks; -->&#xA;        &lt;module name=&quot;NoLineWrap&quot;/>&#xA;        &lt;module name=&quot;EmptyBlock&quot;>&#xA;            &lt;property name=&quot;option&quot; value=&quot;TEXT&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH&quot;/>&#xA;        &lt;/module>&#xA;&#xA;        &lt;!--&#xA;        &lt;module name=&quot;NeedBraces&quot;/>&#xA;        &lt;module name=&quot;LeftCurly&quot;/>&#xA;&#xA;        &lt;module name=&quot;RightCurly&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;RightCurlySame&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_DO&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;RightCurly&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;RightCurlyAlone&quot;/>&#xA;            &lt;property name=&quot;option&quot; value=&quot;alone&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT&quot;/>&#xA;        &lt;/module>&#xA;&#xA;        &lt;module name=&quot;WhitespaceAround&quot;>&#xA;            &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/>&#xA;            &lt;message key=&quot;ws.notFollowed&quot;&#xA;             value=&quot;WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks may only be represented as '{}' when not part of a multi-block statement (4.1.3)&quot;/>&#xA;             &lt;message key=&quot;ws.notPreceded&quot;&#xA;             value=&quot;WhitespaceAround: ''{0}'' is not preceded with whitespace.&quot;/>&#xA;        &lt;/module>-->&#xA;&#xA;        &lt;!-- violation example: int var1; int var2; -->&#xA;        &lt;module name=&quot;OneStatementPerLine&quot;/>&#xA;&#xA;        &lt;!-- violation example:      int level, size; -->&#xA;        &lt;module name=&quot;MultipleVariableDeclarations&quot;/>&#xA;&#xA;        &lt;!-- Java style: public static void main(String[] args) BUT NOT C style: public static void main(String args[]) -->&#xA;        &lt;module name=&quot;ArrayTypeStyle&quot;/>&#xA;&#xA;        &lt;!-- Finds locations where a case contains Java code but lacks a break, return, throw or continue statement. -->&#xA;        &lt;module name=&quot;FallThrough&quot;/>&#xA;        &lt;module name=&quot;UpperEll&quot;/>&#xA;        &lt;module name=&quot;ModifierOrder&quot;/>&#xA;        &lt;!--&#xA;        &lt;module name=&quot;EmptyLineSeparator&quot;>&#xA;            &lt;property name=&quot;allowNoEmptyLineBetweenFields&quot; value=&quot;true&quot;/>&#xA;        &lt;/module>-->&#xA;&#xA;        &lt;!--&#xA;        &lt;module name=&quot;SeparatorWrap&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;SeparatorWrapDot&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/>&#xA;            &lt;property name=&quot;option&quot; value=&quot;nl&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;SeparatorWrap&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;SeparatorWrapComma&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/>&#xA;            &lt;property name=&quot;option&quot; value=&quot;EOL&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;SeparatorWrap&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;SeparatorWrapEllipsis&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;ELLIPSIS&quot;/>&#xA;            &lt;property name=&quot;option&quot; value=&quot;EOL&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;SeparatorWrap&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;SeparatorWrapArrayDeclarator&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_DECLARATOR&quot;/>&#xA;            &lt;property name=&quot;option&quot; value=&quot;EOL&quot;/>&#xA;        &lt;/module>-->&#xA;        &lt;module name=&quot;PackageName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Package name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;TypeName&quot;>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Type name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;MemberName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Member name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;ParameterName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Parameter name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;LocalVariableName&quot;>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/>&#xA;            &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Local variable name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;ClassTypeParameterName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Class type name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;MethodTypeParameterName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Method type name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;InterfaceTypeParameterName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Interface type name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;NoFinalizer&quot;/>&lt;!-- TBD -->&#xA;        &lt;!--&#xA;        &lt;module name=&quot;GenericWhitespace&quot;>&#xA;            &lt;message key=&quot;ws.followed&quot;&#xA;             value=&quot;GenericWhitespace ''{0}'' is followed by whitespace.&quot;/>&#xA;             &lt;message key=&quot;ws.preceded&quot;&#xA;             value=&quot;GenericWhitespace ''{0}'' is preceded with whitespace.&quot;/>&#xA;             &lt;message key=&quot;ws.illegalFollow&quot;&#xA;             value=&quot;GenericWhitespace ''{0}'' should followed by whitespace.&quot;/>&#xA;             &lt;message key=&quot;ws.notPreceded&quot;&#xA;             value=&quot;GenericWhitespace ''{0}'' is not preceded with whitespace.&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;Indentation&quot;>&#xA;            &lt;property name=&quot;basicOffset&quot; value=&quot;2&quot;/>&#xA;            &lt;property name=&quot;braceAdjustment&quot; value=&quot;0&quot;/>&#xA;            &lt;property name=&quot;caseIndent&quot; value=&quot;2&quot;/>&#xA;            &lt;property name=&quot;throwsIndent&quot; value=&quot;4&quot;/>&#xA;            &lt;property name=&quot;lineWrappingIndentation&quot; value=&quot;4&quot;/>&#xA;            &lt;property name=&quot;arrayInitIndent&quot; value=&quot;2&quot;/>&#xA;        &lt;/module> -->&#xA;        &lt;!--  enforce camel case naming and others -->&#xA;        &lt;module name=&quot;AbbreviationAsWordInName&quot;>&#xA;            &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/>&#xA;            &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;3&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/>&lt;!-- TBC -->&#xA;        &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/>&lt;!-- TBC -->&#xA;        &lt;!--&#xA;        &lt;module name=&quot;CustomImportOrder&quot;>&#xA;            &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;customImportOrderRules&quot; value=&quot;STATIC###THIRD_PARTY_PACKAGE&quot;/>&#xA;        &lt;/module>TBC -->&#xA;&#xA;        &lt;!--&#xA;        &lt;module name=&quot;MethodParamPad&quot;/>&#xA;        &lt;module name=&quot;ParenPad&quot;/>TBC -->&#xA;        &lt;module name=&quot;AnnotationLocation&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;AnnotationLocationMostCases&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;AnnotationLocation&quot;>&#xA;            &lt;property name=&quot;id&quot; value=&quot;AnnotationLocationVariables&quot;/>&#xA;            &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/>&#xA;            &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/>&#xA;        &lt;/module>&#xA;        &lt;!--&#xA;        &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/>&#xA;        &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/>&#xA;        &lt;module name=&quot;SummaryJavadoc&quot;>&#xA;            &lt;property name=&quot;forbiddenSummaryFragments&quot; value=&quot;^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;JavadocParagraph&quot;/>&#xA;        &lt;module name=&quot;AtclauseOrder&quot;>&#xA;            &lt;property name=&quot;tagOrder&quot; value=&quot;@param, @return, @throws, @deprecated&quot;/>&#xA;            &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;JavadocMethod&quot;>&#xA;            &lt;property name=&quot;scope&quot; value=&quot;public&quot;/>&#xA;            &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowMissingThrowsTags&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;allowMissingReturnTag&quot; value=&quot;true&quot;/>&#xA;            &lt;property name=&quot;minLineCount&quot; value=&quot;2&quot;/>&#xA;            &lt;property name=&quot;allowedAnnotations&quot; value=&quot;Override, Test&quot;/>&#xA;            &lt;property name=&quot;allowThrowsTagsForSubclasses&quot; value=&quot;true&quot;/>&#xA;        &lt;/module>&#xA;        &lt;module name=&quot;SingleLineJavadoc&quot;>&#xA;            &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/>&#xA;        &lt;/module> -->&#xA;        &lt;module name=&quot;MethodName&quot;>&#xA;            &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9_]*$&quot;/>&#xA;            &lt;message key=&quot;name.invalidPattern&quot;&#xA;             value=&quot;Method name ''{0}'' must match pattern ''{1}''.&quot;/>&#xA;        &lt;/module>&#xA;&#xA;        &lt;!-- check if a contructor or method has less than 15 executable statements -->&#xA;        &lt;module name=&quot;ExecutableStatementCount&quot;>&#xA;          &lt;property name=&quot;max&quot; value=&quot;15&quot;/>&#xA;          &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/>&#xA;          &lt;message key=&quot;executableStatementCount&quot;&#xA;           value=&quot;Method length is {0,number,integer} executable statements (max allowed is {1,number,integer})&quot;/>&#xA;        &lt;/module>&#xA;&#xA;&#xA;        &lt;module name=&quot;EmptyCatchBlock&quot;>&#xA;            &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected&quot;/>&#xA;        &lt;/module>&#xA;&#xA;        &lt;module name=&quot;CyclomaticComplexity&quot;>&#xA;            &lt;property name=&quot;max&quot; value=&quot;5&quot;/>&#xA;            &lt;property name=&quot;switchBlockAsSingleDecisionPoint&quot; value=&quot;true&quot;/>&#xA;        &lt;/module>&#xA;    &lt;/module>&#xA;&lt;/module>"
+      targetURL="${workspace.location|uri}/.metadata/.plugins/net.sf.eclipsecs.core/internal_config_1511778113952.xml"
+      encoding="UTF-8"/>
+  <setupTask
+      xsi:type="setup:ResourceCreationTask"
+      id="checkstyle-config"
+      content="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&#xA;&lt;checkstyle-configurations file-format-version=&quot;5.0.0&quot; default-check-configuration=&quot;ngp&quot;>&#xA;  &lt;check-configuration name=&quot;ngp&quot; location=&quot;internal_config_1511778113952.xml&quot; type=&quot;internal&quot; description=&quot;&quot;/>&#xA;&lt;/checkstyle-configurations>"
+      targetURL="${workspace.location|uri}/.metadata/.plugins/net.sf.eclipsecs.core/checkstyle-config.xml"
+      encoding="UTF-8">
+    <description></description>
   </setupTask>
   <stream name="master"
       label="Master"/>
