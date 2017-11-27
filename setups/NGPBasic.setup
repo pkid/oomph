@@ -7,8 +7,8 @@
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore"
-    name="bixx.basic"
-    label="BizX Basic">
+    name="ngp.basic"
+    label="NGP Basic">
   <setupTask
       xsi:type="setup:CompoundTask"
       name="User Preferences">
@@ -1602,5 +1602,5 @@
   </setupTask>
   <stream name="master"
       label="Master"/>
-  <description>BixX Basic provides common settings for all BizX Developers</description>
+  <description>NGP Basic provides common settings for all BizX Developers</description>
 </setup:Project>

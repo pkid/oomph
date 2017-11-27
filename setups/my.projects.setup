@@ -5,7 +5,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     name="org.eclipse.projects"
-    label="BizX Projects">
+    label="NGP Projects">
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Global Variables">
@@ -276,7 +276,7 @@
   <project name="GeneralContainer"
       label="General">
     <project
-        href="BizXBasic.setup#/"/>
+        href="NGPBasic.setup#/"/>
   </project>
   <project name="EnhancementContainer"
       label="Enhancements">
@@ -287,5 +287,5 @@
     <project
         href="Docker.setup#/"/>
   </project>
-  <description>BizX Project Catalog</description>
+  <description>NGP Project Catalog</description>
 </setup:ProjectCatalog>
