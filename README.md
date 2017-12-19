@@ -4,3 +4,6 @@
 ```
 
 #### redirection for local test
+```
+-Doomph.redirection.index.redirection=index:/->file:///c:/Users/D054341/git/internal-oomph/setups/
+```
