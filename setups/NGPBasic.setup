@@ -1578,10 +1578,20 @@
         name="201707161819.Checkstyle"/>
     <requirement
         name="file:/home/pugh/findbugs-git/eclipsePlugin/bin_build/site/eclipse/site.xml.FindBugs"/>
+    <requirement
+        name="201710111105-RELEASE-e47.Core / Spring IDE"/>
+    <requirement
+        name="201710111105-RELEASE-e47.Extensions / Spring IDE"/>
+    <requirement
+        name="201710111105-RELEASE-e47.Integrations / Spring IDE"/>
+    <requirement
+        name="201710111105-RELEASE-e47.Resources / Spring IDE"/>
     <repository
         url="http://eclipse-cs.sf.net/update"/>
     <repository
         url="http://findbugs.cs.umd.edu/eclipse"/>
+    <repository
+        url="http://download.springsource.com/release/TOOLS/update/e4.7"/>
   </setupTask>
   <setupTask
       xsi:type="setup:ResourceCreationTask"
