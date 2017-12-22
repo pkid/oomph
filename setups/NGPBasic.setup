@@ -1575,17 +1575,14 @@
   <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
-        name="201707161819.Checkstyle"/>
+        name="201712211522.Checkstyle"
+        versionRange="[1.0.0,2.0.0)"/>
     <requirement
-        name="file:/home/pugh/findbugs-git/eclipsePlugin/bin_build/site/eclipse/site.xml.FindBugs"/>
+        name="Additional Checkstyle Checks"
+        versionRange="[1.0.0,2.0.0)"/>
     <requirement
-        name="201710111105-RELEASE-e47.Core / Spring IDE"/>
-    <requirement
-        name="201710111105-RELEASE-e47.Extensions / Spring IDE"/>
-    <requirement
-        name="201710111105-RELEASE-e47.Integrations / Spring IDE"/>
-    <requirement
-        name="201710111105-RELEASE-e47.Resources / Spring IDE"/>
+        name="file:/home/pugh/findbugs-git/eclipsePlugin/bin_build/site/eclipse/site.xml.FindBugs"
+        versionRange="[1.0.0,2.0.0)"/>
     <repository
         url="http://eclipse-cs.sf.net/update"/>
     <repository
